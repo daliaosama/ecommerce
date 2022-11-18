@@ -1,0 +1,31 @@
+<div class="mb-2">
+  <label for="cat">Select Category</label>
+  <!-- two way binding -->
+  <select name="cat" id="cat" class="form-control" [(ngModel)]="categID">
+    <option value="0">All</option>
+    <option *ngFor="let cat of category" [value]="cat.id">
+        {{cat.Name}}
+    </option>
+  </select>
+</div>
+<!-- <app-products [receivedcategID]="categID" (totalPriceChanged)="ontotalPriceChanged($event)"></app-products>  -->
+<app-products [receivedcategID]="categID" (addCard)="onaddCard($event)"></app-products>
+<!-- <h2>Total Price of Order:{{receivedTotal1Price}}</h2> -->
+<table class="table m-2">
+  <thead class="bg-primary text-light">
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Price</th>
+      <th scope="col">Count</th>
+    </tr>
+  </thead>
+    <tbody>
+      <ng-container *ngFor="let item of Card">
+      <tr>
+        <td>{{item.name}}</td>
+        <td>{{item.price}}</td>
+        <td>{{item.Count}}</td>
+      </tr>
+    </ng-container>
+      </tbody>
+</table>

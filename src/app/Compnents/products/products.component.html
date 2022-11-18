@@ -1,0 +1,57 @@
+<h1>{{storeClass.name}}</h1>
+<div *ngIf="!IsPurchased"><h3 style="color:blue">Thanks for purchasing from our Store{{ClientName}}</h3></div>
+<!-- property binding -->
+<img [src]="storeClass.Logo" alt="" width="200" height="100" *ngIf="IsPurchased">
+
+<!-- <ng-container *ngIf="discount!=0;else NoDiscount"><h3>We offer an explicit discount of {{discount}}</h3></ng-container> -->
+<!-- template reference -->
+<!-- <ng-template #NoDiscount></ng-template> -->
+<!-- <ul>
+  <li *ngFor="let item of storeClass.branches">{{item}}</li>
+</ul> -->
+<!-- event binding -->
+<!-- <button class="btn btn-primary" (click)="toggleImg()">Buy</button> -->
+
+<!-- select -->
+<!-- <select class="form-select" aria-label="Default select example" [(ngModel)]="categID">
+  <option *ngFor="let cate of category" [value]="cate.ID">
+    {{cate.Name}}
+  </option>
+</select> -->
+
+<a class="btn btn-success" type="button" routerLink="/NewProduct">Add Prouct</a>
+<table class="table m-2">
+    <thead class="bg-primary text-light">
+      <tr>
+        <!-- <th scope="col">ID</th> -->
+        <th scope="col">NO:</th>
+        <th scope="col">Name</th>
+        <th scope="col">Image</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Price</th>
+        <th scope="col">Count</th>
+        <th scope="col">Details</th>
+        <th scope="col">Buy</th>
+      </tr>
+    </thead>
+      <tbody>
+      <ng-container *ngFor="let prod of prdlist;let i=index" >
+        <tr [ngStyle]="{'background-color':(prod.Quantity==1)?'lightyellow':'lightblue','color':(prod.Quantity==1)?'red':'blue'}" [hidden]="prod.Quantity==0" >
+          <td>{{i+1}}</td>
+          <td>{{prod.Name}}</td>
+          <td><img src="{{prod.Img}}" width="80" height="80"></td>
+          <td>{{prod.Quantity}}</td>
+          <td>{{prod.price}}</td>
+          <td><input type="number" class="form-control" #itemsCount  min="1" max="prod.Quantity"></td>
+          <!-- <td><button class="btn btn-danger" (click)="openPrdDetails(prod.id)">Details</button></td> -->
+          <td><a class="btn btn-danger" [routerLink]="['/Products',prod.id]">Details</a></td>
+          <!-- <td><button class="btn btn-success" (click)="updatePrice(prod.price,itemsCount.value)">Add to cart</button></td>  -->
+          <td><button class="btn btn-success" [disabled]="prod.Quantity==0" (click)="addCart(prod,itemsCount.value)">Add to cart</button>
+        </tr>
+      </ng-container>
+     
+    </tbody>
+
+</table>
+
+
