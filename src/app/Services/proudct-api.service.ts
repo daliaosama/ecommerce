@@ -14,7 +14,7 @@ export class ProudctApiService {
   constructor(private httpClient: HttpClient) { 
     this.httpOptions={
       headers:new HttpHeaders({
-        'Content-Type': 'application/json'
+        'Content-Type':'application/json'
       })
     };
   }
@@ -24,11 +24,13 @@ export class ProudctApiService {
   getProductByCatId(CategoryID:number):Observable<IProduct[]>{
     return this.httpClient.get<IProduct[]>(`${environment.APIBaseURL}/products?CategoryID=${CategoryID}`);
   }
-  getProductById(prdID:number):Observable<IProduct[]>{
-    return this.httpClient.get<IProduct[]>(`${environment.APIBaseURL}/products/${prdID}`);
+  getProductById(pid:number):Observable<IProduct>{
+    return this.httpClient.get<IProduct>(`${environment.APIBaseURL}/products/${pid}`);
   }
   addNewProduct(newPrd:IProduct):Observable<IProduct>{
     return this.httpClient.post<IProduct>(`${environment.APIBaseURL}/products`,JSON.stringify(newPrd),this.httpOptions)
 
   }
+  
+  
 }

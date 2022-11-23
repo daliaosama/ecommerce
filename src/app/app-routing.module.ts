@@ -18,7 +18,7 @@ const routes: Routes = [
     {path:'Products/:pid',component:ProductDetailsComponent},
     {path:'Order', component:OrderParentComponent},
     {path:"NewProduct",component:AddProductComponent},
-    {path:"newproduct",component:InsertproductComponent},
+    {path:"admin/insertproduct",component:InsertproductComponent},
     {path:"register",component:UserRegisterComponent}
     
 ]},

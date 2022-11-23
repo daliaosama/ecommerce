@@ -1,1 +1,29 @@
-<button class="btn btn-success" type="button" (click)="insertNewProduct()">Add Product</button>
+<!-- <button class="btn btn-success" type="button" (click)="insertNewProduct()">Add Product</button> -->
+<form #productForm="ngForm" (ngSubmit)="insertNewProduct()">
+    <div class="mb-3">
+      <label for="name" class="form-label">Product Name</label> 
+      <input #nameInput="ngModel" type="text" class="form-control" name="name" id="name" [(ngModel)]="newprd.Name" pattern="[A-Za-z]{3,}" required [class.is-valid]="nameInput.valid" [class.is-invalid]="nameInput.invalid"/> 
+      <div class="alert alert-danger" [hidden]="nameInput.valid ||nameInput.untouched ">
+        <small *ngIf="nameInput.errors?.['required']">Product Name Required</small>
+        <small *ngIf="nameInput.errors?.['pattern']">Product Name Must be three letters or More</small>
+      </div>
+    </div>
+    <div class="mb-3">
+        <label for="quantity" class="form-label">Quantity</label> 
+        <input type="number" class="form-control" name="quantity" id="quantity" required [(ngModel)]="newprd.Quantity"/> 
+      </div>
+      <div class="mb-3">
+        <label for="price" class="form-label">Price</label> 
+        <input type="number" class="form-control" name="price" id="price" required [(ngModel)]="newprd.price"/> 
+      </div>
+      <div class="mb-3">
+        <label for="category" class="form-label"> Select Category</label> 
+        <select class="form-control" name="category" id="category" required [(ngModel)]="newprd.CategoryID">
+           <option *ngFor="let cat of category" [value]="cat.id">
+            {{cat.Name}}
+           </option> 
+        </select>
+        
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="productForm.invalid">Add</button>
+</form>

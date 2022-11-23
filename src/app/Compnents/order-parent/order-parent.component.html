@@ -3,7 +3,7 @@
   <!-- two way binding -->
   <select name="cat" id="cat" class="form-control" [(ngModel)]="categID">
     <option value="0">All</option>
-    <option *ngFor="let cat of category" [value]="cat.id">
+    <option *ngFor="let cat of categor" [value]="cat.id">
         {{cat.Name}}
     </option>
   </select>

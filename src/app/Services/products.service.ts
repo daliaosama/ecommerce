@@ -37,7 +37,11 @@ return this.product.find(product=>product.id==prdID);
 getProductsIDList():number[] {
   return this.product.map(prd=> prd.id);
 }
-
+addProduct(catId:number,id:number,prdname:string,quantity:number,price:number,img:string)
+{
+  let proud={id:id,Name:prdname,price:price,Quantity:quantity,Img:img,CategoryID:catId}
+  this.product.push(proud);
+}
 // AddProduct(pro:IProduct)
 // {
 //   this.product=pro;

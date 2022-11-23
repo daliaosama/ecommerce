@@ -15,13 +15,14 @@
     <label for="">Quantity</label>
     <input type="number" class="form-control" #Quantity>
  </div>
- <div class="form-group">
-    <label for=""></label>
-    <input type="file"class="form-control" #img>
-    </div>
+ 
     <div class="form-group">
       <label for="price">catid</label>
       <input type="number" class="form-control" #catid>
    </div>
- <button type="submit" class="btn btn-primary" routerLink="/Order" (click)="addProduct(id.value,name.value,price.value,Quantity.value,img.value,catid.value)">Add</button>
+   <div class="form-group">
+      <label for="img">Img</label>
+      <input type="file" class="form-control" #img>
+   </div>
+ <button type="submit" class="btn btn-primary" routerLink="/Order" (click)="addProduct(id.value,name.value,price.value,Quantity.value,catid.value,img.value)">Add</button>
 </form>

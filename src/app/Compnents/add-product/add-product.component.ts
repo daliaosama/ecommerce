@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from 'src/app/Services/products.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-product',
@@ -8,16 +9,14 @@ import { ProductsService } from 'src/app/Services/products.service';
 })
 export class AddProductComponent implements OnInit {
 
-  constructor(private prodService:ProductsService) { }
+  constructor(private prodService:ProductsService,private route:Router) { }
  
   ngOnInit(): void {
   }
-addProduct(id:string,proname:string,price:string,quantity:string,image:string,catID:string)
+addProduct(id:any,proname:any,price:any,quantity:any,catID:any,img:any)
 {
-let Id=Number(id)
-let Price=Number(price)
-let Quantity=Number(quantity)
-let CatID=Number(catID)
-this.prodService.product.push({id:Id,Name:proname,price:Price,Quantity:Quantity,Img:image,CategoryID:CatID})
+this.prodService.addProduct(id,proname,price,quantity,catID,img)
+//console.log(Number(catID))
+this.route.navigate(["Order"])
 }
 }
